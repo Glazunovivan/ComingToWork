@@ -1,0 +1,42 @@
+﻿<Window x:Class="ComingToWork.MainWindow"
+        x:Name="WindowListEmployees"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ComingToWork"
+        mc:Ignorable="d"
+        Title="Учет прихода на работу" Height="450" Width="900"
+        Background="#EDF0F0">
+    <Grid>
+        <Grid Margin="0,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Сотрудники" TextAlignment="Center" FontSize="25"/>
+            <ListView Grid.Row="1" x:Name="EmployeesList" ItemsSource="{Binding}" SelectionChanged="EmployeesList_SelectionChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="250"/>
+                                <ColumnDefinition Width="250"/>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="200"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding LastName}" FontSize ="16"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Department}" FontSize="16"/>
+                            <Button Grid.Column="2" x:Name="BtnComing" Click="BtnComing_Click" Background="#FF12D645" BorderBrush="Transparent"  Command="{Binding ClickEntry}" MinWidth="200" MinHeight="48" Width="228" Height="48">
+                                <Label Content="Пришел" Foreground="White" FontSize="25"/>
+                            </Button>
+                            <Button Grid.Column="3" x:Name="BtnExit" Click ="BtnExit_Click" Background="#EB261A" BorderBrush="Transparent"  Command="{Binding ClickExit}" Width="200" Height="48" MinWidth="228" MinHeight="48">
+                                <Label Content="Ушел" Foreground="White" FontSize="25"></Label>
+                            </Button>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </Grid>
+</Window>
